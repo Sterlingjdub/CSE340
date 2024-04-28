@@ -4,3 +4,217 @@
 *:after {
   box-sizing: border-box;
 }
+
+
+body {
+  font-family: "Open-sans", sans-serif;
+}
+
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+
+.siteName a {
+  font-size: 1.5em; 
+  font-weight: bold;
+  text-decoration: none;
+  color: #000000;
+}
+
+#tools a {
+  font-size: 1em; 
+  text-decoration: none;
+  color: #000000;
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000;
+  text-align: center;
+  padding: 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ffffff;
+  margin: auto;
+  font-size: 1em;
+}
+
+nav a:hover {
+  color: #5F94D2;
+}
+
+.welcome {
+  text-align: left;
+  font-size: 1.5em;
+  margin-left: 5px;
+}
+
+.car {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.car_box {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  top: 10px;
+  left: 10px;
+  text-align: left;
+  color: #5F94D2;
+  z-index: 1;
+}
+
+.car_box h2 {
+  font-size: 1em;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
+.car_box p {
+  font-size: .8em;
+  margin: 5px;
+}
+
+.button {
+  margin-top: 20px;
+  width: 50%;
+}
+
+
+.delorean {
+  width: 100%;
+}
+
+.review {
+  text-align: left;
+}
+
+.review h2 {
+  font-size: 1em;
+}
+
+.review_list {
+  padding-left: 10px;
+}
+.review_list li {
+  margin: 5px;
+  font-size: .8em;
+}
+
+.upgrades h2{
+  font-size: 1em;
+}
+
+.upgrade_info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  align-items: center;
+  row-gap: 5px;
+  column-gap: 20px;
+}
+
+.upgrade_img {
+  text-align: center;
+  background-color: #5F94D2;
+  padding: 10px 30px;
+  border: 1px solid black;
+  width: 200px; 
+  height: 100px;
+}
+
+.upgrade_img img {
+  height: 80px;
+}
+
+.upgrade_box {
+  text-align: center;
+}
+
+footer {
+  padding-top: 20px;
+  text-align: left;
+}
+
+@media (min-width: 900px) {
+  body {
+    padding: 20px 20px 0px;
+    background-color: white;
+    border: 5px solid #5F94D2;
+    border-radius: 10px;
+  }
+
+  html {
+    background-color: white;
+    background-image: url("../images/site/small_check.jpg");
+    background-repeat: repeat;
+    padding: 20px 50px;
+  }
+
+  .siteName a {
+    font-size: 2.5em;
+  }
+
+  .welcome {
+    font-size: 2.5em;
+  }
+
+  nav a {
+    font-size: 1.2em;
+  }
+
+  .car_box {
+    top: 200px;
+    left: 50px;
+  }
+
+  .car_box h2 {
+    font-size: 2em;
+  }
+  
+  .car_box p {
+    font-size: 1.5em;
+  }
+
+  .button {
+    width: auto;
+  }
+
+  .reviews_upgrades {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+  }
+
+  .review {
+    font-size: 1em;
+  }
+
+  .review h2 {
+    font-size: 1.5em;
+    padding-bottom: 20px;
+  }
+
+  .upgrades h2{
+    font-size: 1.5em;
+    padding-bottom: 20px;
+  }
+
+  .upgrade_img {
+    padding: 10px 60px;
+  }
+
+
+  .review_list li {
+    font-size: 1.2em;
+    margin-top: 20px;
+  }
+}
