@@ -17,22 +17,22 @@ body {
 }
 
 .siteName a {
-  font-size: 1.5em; 
+  font-size: 1.5em;
   font-weight: bold;
   text-decoration: none;
   color: #000000;
 }
 
 #tools a {
-  font-size: 1em; 
+  font-size: 1em;
   text-decoration: none;
   color: #000000;
 }
 
 
-nav {
+nav>ul {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #000000;
   text-align: center;
   padding: 15px;
@@ -47,6 +47,10 @@ nav a {
 
 nav a:hover {
   color: #5F94D2;
+}
+
+h1 {
+  font-size: 1.3em;
 }
 
 .welcome {
@@ -104,12 +108,13 @@ nav a:hover {
 .review_list {
   padding-left: 10px;
 }
+
 .review_list li {
   margin: 5px;
   font-size: .8em;
 }
 
-.upgrades h2{
+.upgrades h2 {
   font-size: 1em;
 }
 
@@ -127,7 +132,7 @@ nav a:hover {
   background-color: #5F94D2;
   padding: 10px 30px;
   border: 1px solid black;
-  width: 200px; 
+  width: 200px;
   height: 100px;
 }
 
@@ -139,11 +144,98 @@ nav a:hover {
   text-align: center;
 }
 
+
+/* Classification view */
+#inv-display {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+#inv-display li {
+  border: 1px solid black;
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 10px;
+}
+
+.namePrice {
+  margin-top: 10px;
+}
+
+.vehicle-link {
+  color: #4f7db1;
+  text-decoration: none;
+}
+
+.namePrice span {
+  display: block;
+  font-weight: bold;
+}
+
+.price {
+  color: inherit;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: auto;
+  height: 100%;
+}
+
+#inv-display a {
+  text-decoration: none;
+}
+
+
+/* Individual vehicle view */
+#vehicle-display {
+  display: flex;
+  flex-direction: column;
+}
+
+#vehicle-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.details {
+  margin-top: 10px;
+}
+
+#vehicle-display p {
+  padding: 10px;
+  font-size: 1em;
+}
+
+.price-color {
+  background-color: #f7f7f7;
+}
+
+/* Footer */
 footer {
   padding-top: 20px;
+  padding-bottom: 10px;
   text-align: left;
 }
 
+
+/* Computer Screens */
 @media (min-width: 900px) {
   body {
     padding: 20px 20px 0px;
@@ -171,6 +263,10 @@ footer {
     font-size: 1.2em;
   }
 
+  h1 {
+    font-size: 2em;
+  }
+
   .car_box {
     top: 200px;
     left: 50px;
@@ -179,7 +275,7 @@ footer {
   .car_box h2 {
     font-size: 2em;
   }
-  
+
   .car_box p {
     font-size: 1.3em;
   }
@@ -203,7 +299,7 @@ footer {
     padding-bottom: 20px;
   }
 
-  .upgrades h2{
+  .upgrades h2 {
     font-size: 1.5em;
     padding-bottom: 20px;
   }
@@ -216,5 +312,27 @@ footer {
   .review_list li {
     font-size: 1.2em;
     margin-top: 20px;
+  }
+
+  /* Classification view */
+  #inv-display {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Individual vehicle view */
+  #vehicle-display {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .details {
+    flex: 1;
+    margin-left: 20px;
+    margin-top: 0;
+  }
+
+  #vehicle-display p {
+    font-size: 1.2em;
   }
 }
