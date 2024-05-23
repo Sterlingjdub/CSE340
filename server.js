@@ -34,8 +34,11 @@ app.use(session({
   name: 'sessionId',
 }))
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+//app.use(bodyParser.json())
+//app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 // Express Messages Middleware
 app.use(require('connect-flash')())
