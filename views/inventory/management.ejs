@@ -1,0 +1,26 @@
+<% if(title) { %>
+    <h1 id="managementHead">
+      <%= title %>
+    </h1>
+    <%} else { res.redirect('/'); } %>
+  
+      <%- messages() %>
+          <% if (errors) { %>
+            <ul class="notice">
+              <% errors.array().forEach(error=> { %>
+                <li>
+                  <%= error.msg %>
+                </li>
+                <% }) %>
+            </ul>
+            <% } %>
+  
+  <div id="manageBtnsContainer">
+    <button id="manageClassificationBtn" class="manageBtn"
+      onclick="location.href='./add-classification'">Manage Classification
+    </button>
+    <button id="manageInventoryBtn" class="manageBtn"
+      onclick="location.href='./add-inventory'">Manage Inventory
+    </button>
+  </div>  
+  

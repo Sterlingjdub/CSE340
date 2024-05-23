@@ -57,6 +57,29 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }  
 
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+Util.buildClassificationList = async function (classification_id = null) {
+  let data = await invModel.getClassifications()
+  let classificationList =
+    '<select name="classification_id" id="classificationList" required>'
+  classificationList += "<option value=''>Choose a Classification</option>"
+  data.rows.forEach((row) => {
+    classificationList += '<option value="' + row.classification_id + '"'
+    if (
+      classification_id != null &&
+      row.classification_id == classification_id
+    ) {
+      classificationList += " selected "
+    }
+    classificationList += ">" + row.classification_name + "</option>"
+  })
+  classificationList += 'value=" <%= locals.inv_miles%>'
+  classificationList += "</select>"
+  return classificationList
+}
+
   /* **************************************
 * Build the inventory Detail view HTML
 * ************************************ */
@@ -82,6 +105,36 @@ Util.buildVehicleView = async function(data){
     grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
   }
   return grid
+}
+
+/* **************************************
+* Build the Management view HTML
+* *************************************/
+Util.buildManagementView = async function(){
+  let body = '<div class="center-container">'
+  body += '<div class="form-container">'
+  body += '<a href="/inv/add-classification">Add Classification</a>'
+  body += '<br><a href="/inv/add-inventory">Add Inventory Item</a>'
+  body += '</div>'
+  body += '</div>'
+  return body
+}
+
+/* **************************************
+* Build a dynamic drop-down select list
+* ************************************ */
+Util.selectList = async function (req, res, next) {
+  let data = await invModel.getClassifications()
+  let list = '<label class="lbl-properties">Classification: '
+  list += '<select class="lbl-properties" id="classification_id" name="classification_id" required>'
+  list += '<option value="">Choose a classification</option>'
+  data.rows.forEach((row) => {
+      list += '<option value="' + row.classification_id
+      list += '">' + row.classification_name + '</option>'
+  })
+  list += '</select>'
+  list += '</label>'
+  return list
 }
 
 /* **************************************
