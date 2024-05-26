@@ -7,6 +7,7 @@ const {
 const validate = {}
 const accountModel = require("../models/account-model")
 
+
 /*  **********************************
  *  Registration Data Validation Rules
  * ********************************* */
@@ -16,7 +17,6 @@ validate.registationRules = () => {
         body("account_firstname")
         .trim()
         .escape()
-        .notEmpty()
         .isLength({
             min: 1
         })
@@ -26,7 +26,6 @@ validate.registationRules = () => {
         body("account_lastname")
         .trim()
         .escape()
-        .notEmpty()
         .isLength({
             min: 2
         })
@@ -48,7 +47,6 @@ validate.registationRules = () => {
         // password is required and must be strong password
         body("account_password")
         .trim()
-        .notEmpty()
         .isStrongPassword({
             minLength: 12,
             minLowercase: 1,

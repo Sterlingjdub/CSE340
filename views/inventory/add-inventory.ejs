@@ -1,7 +1,5 @@
-<% if(title) { %>
-    <h1 id="manageInventoryHead">
-      <%= title %>
-    </h1>
+<% if (title) { %>
+  <h1><%- title %></h1>
     <%} else { res.redirect('/'); } %>
   
     <%- messages() %>
@@ -14,51 +12,56 @@
         <% }) %>
       </ul>
     <% } %>
+
+    <%# grid %>
   
   <form id="addInvForm" action="/inv/add-inventory" method="post">
     <fieldset id="enterInventory">
+      <p class="form-instructions">All fields are required*</p>
+      <br>
   
-      <label for="invMake">Make</label><br>
+      <label for="invMake" class="form-label">Make</label>
       <input type="text" id="invMake" name="inv_make" 
              required value="<%= locals.inv_make%>">
-      <br>
-      <label for="invModel">Model</label><br>
+      <br><br>
+      <label for="invModel" class="form-label">Model</label>
       <input type="text" id="invModel" name="inv_model" 
                  required value="<%= locals.inv_model%>">
-      <br>
-      <label for="invYear">Year</label><br>
+      <br><br>
+      <label for="invYear" class="form-label">Year</label>
       <input type="text" id="invYear" name="inv_year" 
              required pattern="^[0-9].{3,}$" 
              value="<%= locals.inv_year%>">
-      <br>
-      <label for="invDescription">Description</label><br>
+      <br><br>
+      <label for="invDescription" class="form-label">Description</label>
       <textarea id="invDescription" name="inv_description" 
                 required value="<%= locals.inv_description%>">
       </textarea>
-      <br>
-      <label for="invImg">Image Path</label><br>
+      <br><br>
+      <label for="invImg" class="form-label">Image Path</label>
       <input type="text" id="invImg" name="inv_image" 
-             required value=" <%= locals.inv_image%>">
-      <br>
-      <label for="invThumb">Thumbnail Path</label><br>
+             required value="<%= locals.inv_image ? locals.inv_image : '/images/vehicles/no-image.png' %>">
+      <br><br>
+      <label for="invThumb" class="form-label">Thumbnail Path</label>
       <input type="text" id="invThumb" name="inv_thumbnail" 
-      required value=" <%= locals.inv_thumbnail%>">
-      <br>
-      <label for="invPrice">Price</label><br>
+      required value="<%= locals.inv_thumbnail ? locals.inv_thumbnail : '/images/vehicles/no-image-tn.png' %>">
+
+      <br><br>
+      <label for="invPrice" class="form-label">Price</label>
       <input type="text" id="invPrice" name="inv_price" 
              required value=" <%= locals.inv_price%>">
-      <br>
-      <label for="invMiles">Miles</label><br>
+      <br><br>
+      <label for="invMiles" class="form-label">Miles</label>
       <input type="text" id="invMiles" name="inv_miles" 
              required value=" <%= locals.inv_miles%>">
-      <br>
-      <label for="classificationID">Classification ID</label><br>
+      <br><br>
+      <label for="classificationID" class="form-label">Classification ID</label>
       <%- categorySelect %>
-      <br>
-      <label for="invColor">Color</label><br>
+      <br><br>
+      <label for="invColor" class="form-label">Color</label>
       <input type="text" id="invColor" name="inv_color" 
-            required value=" <%= locals.inv_miles%>">
-      <br>
+            required value=" <%= locals.inv_color%>">
+      <br><br>
       <input type="submit" id="add-invBtn" value="Add to inventory">
       <br>
   

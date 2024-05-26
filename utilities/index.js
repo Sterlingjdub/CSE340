@@ -25,9 +25,9 @@ Util.getNav = async function (req, res, next) {
 }
 
 /* **************************************
-* Build the classification view HTML
-* ************************************ */
-Util.buildClassificationGrid = async function(data){
+ * Build the classification view HTML
+ * ************************************ */
+Util.buildClassificationGrid = async function (data) {
   let grid
   if (data.length > 0) {
     grid = '<ul id="inv-display">'
@@ -36,7 +36,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<a href="../../inv/detail/' + vehicle.inv_id +
         '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model +
         'details"><img src="' + vehicle.inv_thumbnail +
-        '" alt="'+vehicle.inv_color +' ' + vehicle.inv_make + ' ' + vehicle.inv_model +
+        '" alt="' + vehicle.inv_color + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model +
         ' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
       grid += '<hr />'
@@ -55,11 +55,11 @@ Util.buildClassificationGrid = async function(data){
     grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
-}  
+}
 
 /* **************************************
-* Build the classification view HTML
-* ************************************ */
+ * Build the classification view HTML
+ * ************************************ */
 Util.buildClassificationList = async function (classification_id = null) {
   let data = await invModel.getClassifications()
   let classificationList =
@@ -80,26 +80,26 @@ Util.buildClassificationList = async function (classification_id = null) {
   return classificationList
 }
 
-  /* **************************************
-* Build the inventory Detail view HTML
-* ************************************ */
-Util.buildVehicleView = async function(data){
+/* **************************************
+ * Build the inventory Detail view HTML
+ * ************************************ */
+Util.buildVehicleView = async function (data) {
   let grid
-  if(data.length > 0){
+  if (data.length > 0) {
     const vehicle = data[0]
     grid = '<div id="vehicle-display">'
-      grid += '<a  href="#" title="CSE Motors ' + vehicle.inv_make + ' ' + vehicle.inv_model +'">'
-      grid += '<img id="vehicle-image" src="' + vehicle.inv_image +'" alt="'+vehicle.inv_color +' '+ vehicle.inv_make + ' ' + vehicle.inv_model +' "> </a>'
-      grid += '<div class="details">'
-      grid += '<h2> '
-      grid += vehicle.inv_make + ' ' + vehicle.inv_model + ' Details '
-      grid += '</h2>'
-      grid += '<p class="price-color"> <span><strong>Price: </strong></span>' + ' $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>' 
-      grid += '<p> <span><strong>Description: </strong></span>' + vehicle.inv_description + ' </p>'
-      grid += '<p> <span><strong>Color: </strong></span>' + vehicle.inv_color + ' </p>'
-      grid += '<p> <span><strong>Miles: </strong></span>' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) +' </p>'
-      grid += '</div>'
-    
+    grid += '<a  href="#" title="CSE Motors ' + vehicle.inv_make + ' ' + vehicle.inv_model + '">'
+    grid += '<img id="vehicle-image" src="' + vehicle.inv_image + '" alt="' + vehicle.inv_color + ' ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' "> </a>'
+    grid += '<div class="details">'
+    grid += '<h2> '
+    grid += vehicle.inv_make + ' ' + vehicle.inv_model + ' Details '
+    grid += '</h2>'
+    grid += '<p class="price-color"><strong>Price: </strong>' + ' $' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</p>'
+    grid += '<p><strong>Description: </strong>' + vehicle.inv_description + ' </p>'
+    grid += '<p><strong>Color: </strong>' + vehicle.inv_color + ' </p>'
+    grid += '<p><strong>Miles: </strong>' + new Intl.NumberFormat('en-US').format(vehicle.inv_miles) + ' </p>'
+    grid += '</div>'
+
     grid += '</div>'
   } else {
     grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
@@ -108,29 +108,118 @@ Util.buildVehicleView = async function(data){
 }
 
 /* **************************************
-* Build the Management view HTML
-* *************************************/
-Util.buildManagementView = async function(){
-  let body = '<div class="center-container">'
-  body += '<div class="form-container">'
-  body += '<a href="/inv/add-classification">Add Classification</a>'
-  body += '<br><a href="/inv/add-inventory">Add Inventory Item</a>'
-  body += '</div>'
-  body += '</div>'
-  return body
-}
+ * Build the Management view HTML
+ * *************************************
+Util.buildManagementView = async function () {
+  let grid = '<div id="manageBtnsContainer">'
+  grid += '<p class="management-p">Add a new vehicle classification by clicking on the button below</p>'
+  grid += `<button id="manageClassificationBtn" class="manageBtn"
+  onclick="location.href='./add-classification'">Add New Classification
+</button>`
+  grid += '<br><p class="management-p">Add a new vehicle to our inventory by clicking on the button below</p>'
+  grid += `<button id="manageInventoryBtn" class="manageBtn"
+  onclick="location.href='./add-inventory'">Add New Vehicle
+</button>`
+  grid += '</div>'
+  return grid
+}*/
 
 /* **************************************
-* Build a dynamic drop-down select list
-* ************************************ */
+ * Build the add classification view HTML
+ * *************************************/
+/*Util.buildAddClassification = async function () {
+  let grid = '<div class="center-container">'
+  grid += '<div class="form-container">'
+  grid += '<form action="/inv/add-classification" method="post">'
+  grid += '<label for="classification_name" class="form-label">Classification Name:</label>'
+  grid += '<p class="form-instructions">Name must be alphabetical characters only</p>'
+  grid += '<input type="text" id="classification_name" name="classification_name" pattern="^[^\s!@#$%^&*]+$" required>'
+  grid += '<input type="submit" id="add-classBtn" value="Add New Classification">'
+  grid += '</form>'
+  grid += '</div>'
+  grid += '</div>'
+  return grid
+}/*
+
+/* **************************************
+ * Build the add inventory view HTML
+ * *************************************/
+/*Util.buildAddInventoryView = async function () {
+  let grid = '<form id="addInvForm" action="/inv/add-inventory" method="post">'
+  grid += '<fieldset id="enterInventory">'
+  grid += '<p class="form-instructions">All fields are required*</p><br>'
+
+  grid += '<label for="invMake" class="form-label">Make</label>'
+  grid += `<input type="text" id="invMake" name="inv_make" 
+  required value="<%= locals.inv_make%>">
+<br><br>`
+  grid += '<input type="text" id="classification_name" name="classification_name" pattern="^[^\s!@#$%^&*]+$" required>'
+  grid += '<input type="submit" id="add-classBtn" value="Add New Classification">'
+  grid += '</form>'
+  grid += '</div>'
+  grid += '</div>'
+  return grid
+}
+
+<form id="addInvForm" action="/inv/add-inventory" method="post">
+    <fieldset id="enterInventory">
+      <p class="form-instructions">All fields are required*</p>
+      <br>
+  
+      <label for="invMake" class="form-label">Make</label>
+      <input type="text" id="invMake" name="inv_make" 
+             required value="<%= locals.inv_make%>">
+      <br><br>
+      <label for="invModel" class="form-label">Model</label>
+      <input type="text" id="invModel" name="inv_model" 
+                 required value="<%= locals.inv_model%>">
+      <br><br>
+      <label for="invYear" class="form-label">Year</label>
+      <input type="text" id="invYear" name="inv_year" 
+             required pattern="^[0-9].{3,}$" 
+             value="<%= locals.inv_year%>">
+      <br><br>
+      <label for="invDescription" class="form-label">Description</label>
+      <textarea id="invDescription" name="inv_description" 
+                required value="<%= locals.inv_description%>">
+      </textarea>
+      <br><br>
+      <label for="invImg" class="form-label">Image Path</label>
+      <input type="text" id="invImg" name="inv_image" 
+             required value="<%= locals.inv_image ? locals.inv_image : '/images/vehicles/no-image.png' %>">
+      <br><br>
+      <label for="invThumb" class="form-label">Thumbnail Path</label>
+      <input type="text" id="invThumb" name="inv_thumbnail" 
+      required value="<%= locals.inv_thumbnail ? locals.inv_thumbnail : '/images/vehicles/no-image-tn.png' %>">
+
+      <br><br>
+      <label for="invPrice" class="form-label">Price</label>
+      <input type="text" id="invPrice" name="inv_price" 
+             required value=" <%= locals.inv_price%>">
+      <br><br>
+      <label for="invMiles" class="form-label">Miles</label>
+      <input type="text" id="invMiles" name="inv_miles" 
+             required value=" <%= locals.inv_miles%>">
+      <br><br>
+      <label for="classificationID" class="form-label">Classification ID</label>
+      <%- categorySelect %>
+      <br><br>
+      <label for="invColor" class="form-label">Color</label>
+      <input type="text" id="invColor" name="inv_color" 
+            required value=" <%= locals.inv_color%>">
+
+
+/* **************************************
+ * Build a dynamic drop-down select list
+ * ************************************ */
 Util.selectList = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = '<label class="lbl-properties">Classification: '
   list += '<select class="lbl-properties" id="classification_id" name="classification_id" required>'
   list += '<option value="">Choose a classification</option>'
   data.rows.forEach((row) => {
-      list += '<option value="' + row.classification_id
-      list += '">' + row.classification_name + '</option>'
+    list += '<option value="' + row.classification_id
+    list += '">' + row.classification_name + '</option>'
   })
   list += '</select>'
   list += '</label>'
@@ -138,17 +227,17 @@ Util.selectList = async function (req, res, next) {
 }
 
 /* **************************************
-* Build error view HTML
-* ************************************ */
-Util.buildErrorMessage = async function(){
+ * Build error view HTML
+ * ************************************ */
+Util.buildErrorMessage = async function () {
   let error500
-    error500 = '<div id="details-display-error">'
-    error500 += '<p>Oh no! There was a crash. Maybe try a different route?</p>'
-    error500 += '</div>'
+  error500 = '<div id="details-display-error">'
+  error500 += '<p>Oh no! There was a crash. Maybe try a different route?</p>'
+  error500 += '</div>'
   return error500
 }
 
- /* ****************************************
+/* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
  * General Error Handling

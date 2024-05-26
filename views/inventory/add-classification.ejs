@@ -14,12 +14,15 @@
 </ul>
 <% } %>
 
+    <%# grid %>
+
 <div class="center-container">
     <div class="form-container">
         <form action="/inv/add-classification" method="post">
-            <label for="classification_name">Classification:</label>
+            <label for="classification_name" class="form-label">Classification Name:</label>
+            <p class="form-instructions">Name must be alphabetical characters only</p>
             <input type="text" id="classification_name" name="classification_name" pattern="^[^\s!@#$%^&*]+$" required>
-            <button type="submit">Submit</button>
+            <input type="submit" id="add-classBtn" value="Add New Classification">
         </form>
     </div>
 </div>'

@@ -12,7 +12,6 @@ const Util = require (".");
       body("classification_name")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min: 1 })
       .isAlphanumeric()
       .withMessage("A valid classification name is required.")
@@ -56,7 +55,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_make")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min: 1 })
       .withMessage("Please provide the vehicle make."),
 
@@ -64,7 +62,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_model")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min: 1 })
       .withMessage("Please provide the vehicle make."),
 
@@ -72,7 +69,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_year")
       .trim()
       .escape()
-      .notEmpty()
       .isNumeric()
       .isLength({ min:4, max: 4 }),
 
@@ -80,7 +76,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_description")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min:1 })
       .withMessage("Please provide a description of the  vehicle."),
 
@@ -88,7 +83,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_image")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min:1 })
       .withMessage("Please provide the path to the vehicle image."),
 
@@ -96,7 +90,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_thumbnail")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min:1 })
       .withMessage("Please provide the path to the vehicle thumbnail."),
 
@@ -104,7 +97,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_price")
       .trim()
       .escape()
-      .notEmpty()
       .isNumeric()
       .isLength({ min:1 })
       .withMessage("Please provide the price."),
@@ -113,7 +105,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_miles")
       .trim()
       .escape()
-      .notEmpty()
       .isNumeric()
       .isLength({ min:1 })
       .withMessage("Please provide the miles."),
@@ -122,7 +113,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("inv_color")
       .trim()
       .escape()
-      .notEmpty()
       .isLength({ min:1 })
       .withMessage("Please provide the color."),
 
@@ -130,7 +120,6 @@ validate.checkClassificationData = async (req, res, next) => {
       body("classification_id")
       .trim()
       .escape()
-      .notEmpty()
       .isNumeric()
       .isLength({ min:1 })
       .withMessage("Please provide the classification.")

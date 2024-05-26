@@ -14,16 +14,19 @@ router.get("/detail/:detailId", utilities.handleErrors(invController.buildByDeta
 // Route to build error 500 by error view
 router.get("/error/", utilities.handleErrors(invController.buildError));
 
+// Route to build vehicle management view
 router.get("/", utilities.handleErrors(invController.buildVehicleManagement));
 
+// Route to build add classification view
 router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
 
+// Route to build add inventory view
 router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventoryView));
 
 // POST Routes
 router.post("/add-classification",
   invValidate.classificationRules(),
-  invValidate.checkClassificationData, utilities.handleErrors(invController.buildAddClassification) )
+  invValidate.checkClassificationData, utilities.handleErrors(invController.registerClassification) )
 
   router.post("/add-inventory",
   invValidate.inventoryRules(),
