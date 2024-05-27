@@ -19,7 +19,7 @@
 <form id="loginForm" action="/account/login" method="post">
     <fieldset id="login">
         <label for="account_email">Email:</label>
-        <input type="email" name="account_email" id="login_email" required>
+        <input type="email" name="account_email" id="login_email" required <%= locals.account_email %>>
         <label for="account_password">Password:</label>
         <input type="password" name="account_password" id="login_pwd" required 
         pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
