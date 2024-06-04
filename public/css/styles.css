@@ -350,8 +350,10 @@ span {
 }
 
 
-/* Modify view */
-
+/* Delete view */
+.deleteMSG {
+  text-align: center;
+}
 
 /* Button style when disabled */
 #add-invBtn:disabled {

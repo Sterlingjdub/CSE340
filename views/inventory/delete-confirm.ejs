@@ -1,0 +1,44 @@
+<% if (title) { %>
+<h1><%- title %></h1>
+<%} else { res.redirect('/'); } %>
+
+<%- messages() %>
+<% if (errors) { %>
+<ul class="notice">
+    <% errors.array().forEach(error=> { %>
+    <li>
+        <%= error.msg %>
+    </li>
+    <% }) %>
+</ul>
+<% } %>
+
+<%# grid %>
+
+
+<form id="deleteForm" action="/inv/delete/" method="post">
+    <fieldset id="enterInventory">
+       <h3 class="deleteMSG">Confirm Deletion - The delete is permanent</h3> 
+
+        <label for="invMake" class="form-label">Make</label>
+        <input type="text" id="invMake" name="inv_make" required value="<%= locals.inv_make%>" readonly>
+        <br><br>
+
+        <label for="invModel" class="form-label">Model</label>
+        <input type="text" id="invModel" name="inv_model" required value="<%= locals.inv_model%>" readonly>
+        <br><br>
+
+        <label for="invYear" class="form-label">Year</label>
+        <input type="text" id="invYear" name="inv_year" required pattern="^[0-9].{3,}$" value="<%= locals.inv_year%>" readonly>
+        <br><br>
+
+        <label for="invPrice" class="form-label">Price</label>
+        <input type="text" id="invPrice" name="inv_price" required value=" <%= locals.inv_price%>" readonly>
+        <br><br>
+
+        <input type="submit" id="add-invBtn" value="Delete Inventory">
+        <input type="hidden" name="inv_id" <% if(locals.inv_id) { %> value="<%= locals.inv_id %>" <% } %>>
+        <br>
+
+    </fieldset>
+</form>
