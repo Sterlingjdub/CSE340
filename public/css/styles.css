@@ -247,7 +247,8 @@ h1 {
 /* Login and registration views */
 form,
 #manageBtnsContainer,
-#infoContainer {
+#infoContainer,
+.manageLinks {
   max-width: 500px;
   margin: 0 auto;
   padding: 1em;
@@ -362,7 +363,10 @@ span {
   cursor: not-allowed;
 }
 
-
+/* Edit information view */
+#form-h3 {
+  text-align: center;
+}
 
 /* Footer */
 footer {

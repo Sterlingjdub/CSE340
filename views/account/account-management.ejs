@@ -16,4 +16,15 @@
 </ul>
 <% } %>
 
-<h1>You're logged in</h1>
+<h2> Welcome <%- welcomeBasic  %> </h2>
+
+<div class="manageLinks">
+    <h3>Account Management</h3>
+    <p> <a href="/account/update-information/<%- acctId %>">Edit Account Information</a></p>
+    <% if(locals.accountData.account_type === "Admin" || 
+          locals.accountData.account_type === "Employee") { %>
+
+    <h3>Inventory Management</h3>
+    <p> <a href="/inv/">Manage Inventory</a></p>
+    <% } %>
+</div>

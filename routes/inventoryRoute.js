@@ -1,9 +1,10 @@
 // Needed Resources 
 const express = require("express")
-const router = new express.Router() 
+const router = new express.Router()
 const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 const invValidate = require("../utilities/inventory-validation")
+const acctValidate = require("../utilities/account-validation")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
@@ -32,19 +33,35 @@ router.get("/edit/:detailId", utilities.handleErrors(invController.editInventory
 // Route to build delete inventory view
 router.get("/delete/:invId", utilities.handleErrors(invController.buildDeleteInventory));
 
-// POST Routes
-router.post("/add-classification",
-  invValidate.classificationRules(),
-  invValidate.checkClassificationData, utilities.handleErrors(invController.registerClassification) )
+// Post to the inventory management view
+router.post("/",
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.buildVehicleManagement));
 
+// Post to the add classification view
+router.post("/add-classification",
+  utilities.checkAccountType,
+  invValidate.classificationRules(),
+  invValidate.checkClassificationData,
+  utilities.handleErrors(invController.registerClassification))
+
+// Post to the add inventory view
 router.post("/add-inventory",
+  utilities.checkAccountType,
   invValidate.inventoryRules(),
   invValidate.checkInventoryData,
-  utilities.handleErrors(invController.registerInventoryItem) )
+  utilities.handleErrors(invController.registerInventoryItem))
 
-router.post("/update/", invValidate.inventoryRules(),
-  invValidate.checkUpdateData, utilities.handleErrors(invController.updateInventory));
+// Post to the update inventory view
+router.post("/update/",
+  utilities.checkAccountType,
+  invValidate.inventoryRules(),
+  invValidate.checkUpdateData,
+  utilities.handleErrors(invController.updateInventory));
 
-router.post("/delete/", utilities.handleErrors(invController.deleteInventory));
+// Post to the delete inventory view
+router.post("/delete/",
+  utilities.checkAccountType,
+  utilities.handleErrors(invController.deleteInventory));
 
 module.exports = router;
